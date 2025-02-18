@@ -2,7 +2,11 @@
   <div class="h-[75px]">
     <p-menubar [model]="items">
       <ng-template #start>
-        <a href="https://tulimy.com/" target="_blank">
+        <a
+          href="https://tulimy.com/"
+          target="_blank"
+          class="flex items-center justify-center"
+        >
           <img
             src="/assets/logo.jpg"
             alt="image"
@@ -13,15 +17,31 @@
       </ng-template>
     </p-menubar>
   </div>
-  <div class="grid grid-cols-[auto_250px] gap-2 mt-2 flex-1">
+  <div class="grid grid-cols-[auto_325px] gap-2 mt-2 flex-1">
     <div>
       <router-outlet />
     </div>
     <div class="flex items-center justify-center">
-      <span class="font-bold">Tulimy.com</span>
+      <p-carousel
+        [value]="images"
+        [numVisible]="1"
+        [numScroll]="1"
+        circular="true"
+        autoplayInterval="5000"
+        [showNavigators]="true"
+        styleClass="w-full h-full"
+      >
+        <ng-template pTemplate="item" let-image>
+          <img
+            [src]="image.src"
+            [alt]="image.alt"
+            class="w-full h-full object-cover"
+          />
+        </ng-template>
+      </p-carousel>
     </div>
   </div>
-  <div class="mt-2 h-[150px] w-screen flex items-center justify-center">
-    <span class="font-bold">Tulimy.com</span>
-  </div>
+  <div
+    class="mt-2 h-[150px] w-screen flex items-center justify-center bg-[url(assets/footer.png)] bg-cover bg-center"
+  ></div>
 </div>

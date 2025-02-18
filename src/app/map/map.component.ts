@@ -22,8 +22,8 @@ const TulimyCoordinates: any = [52.2161740267298, 21.2321494716019];
 export class MapComponent implements OnInit {
   private viewContainer = inject(ViewContainerRef);
 
-  @ViewChild('popupTemplate', { static: false })
-  public popupTemplate?: TemplateRef<any>;
+  @ViewChild('popupBannerTemplate', { static: false })
+  public popupBannerTemplate?: TemplateRef<any>;
 
   private map: any;
 
@@ -58,8 +58,10 @@ export class MapComponent implements OnInit {
           'Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>',
       }).addTo(this.map);
 
-      if (this.popupTemplate) {
-        const view = this.viewContainer.createEmbeddedView(this.popupTemplate);
+      if (this.popupBannerTemplate) {
+        const view = this.viewContainer.createEmbeddedView(
+          this.popupBannerTemplate
+        );
         const popupElement = view.rootNodes[0] as HTMLElement;
 
         L.marker(TulimyCoordinates)
