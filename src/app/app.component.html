@@ -3,10 +3,10 @@
     <p-menubar [model]="items" />
   </div>
   <div class="grid grid-cols-[auto_250px] gap-2 mt-2 flex-1">
-    <div class="bg-red-100">Mapa</div>
+    <div class="bg-red-100">
+      <router-outlet />
+    </div>
     <div class="bg-amber-100">Baner</div>
   </div>
   <div class="bg-green-500 mt-2 h-[150px]">Footer</div>
-
-  <router-outlet />
 </div>
