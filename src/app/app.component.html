@@ -21,22 +21,17 @@
     <div>
       <router-outlet />
     </div>
-    <div class="flex items-center justify-center">
+    <div>
       <p-carousel
         [value]="images"
         [numVisible]="1"
         [numScroll]="1"
-        circular="true"
-        autoplayInterval="5000"
+        [circular]="true"
+        [autoplayInterval]="5000"
         [showNavigators]="true"
-        styleClass="w-full h-full"
       >
-        <ng-template pTemplate="item" let-image>
-          <img
-            [src]="image.src"
-            [alt]="image.alt"
-            class="w-full h-full object-cover"
-          />
+        <ng-template let-image #item>
+          <img [src]="image.src" [alt]="image.alt" />
         </ng-template>
       </p-carousel>
     </div>
