@@ -14,7 +14,9 @@ import { PanelModule } from 'primeng/panel';
 export class AppComponent {
   title = 'tulimy-map';
   protected items: MenuItem[] = [
-    { label: 'Strona główna' },
+    {
+      label: 'Strona główna',
+    },
     { label: 'O projekcie' },
     { label: 'O Tulimy' },
     { label: 'Kontakt' },

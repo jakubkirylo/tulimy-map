@@ -1,12 +1,27 @@
 <div class="h-screen flex flex-col">
-  <div class="h-[50px]">
-    <p-menubar [model]="items" />
+  <div class="h-[75px]">
+    <p-menubar [model]="items">
+      <ng-template #start>
+        <a href="https://tulimy.com/" target="_blank">
+          <img
+            src="/assets/logo.jpg"
+            alt="image"
+            class="inline-block w-[50px] h-[50px] mr-2"
+          />
+          Tulimy.com
+        </a>
+      </ng-template>
+    </p-menubar>
   </div>
   <div class="grid grid-cols-[auto_250px] gap-2 mt-2 flex-1">
-    <div class="bg-red-100">
+    <div>
       <router-outlet />
     </div>
-    <div class="bg-amber-100">Baner</div>
+    <div class="flex items-center justify-center">
+      <span class="font-bold">Tulimy.com</span>
+    </div>
   </div>
-  <div class="bg-green-500 mt-2 h-[150px]">Footer</div>
+  <div class="mt-2 h-[150px] w-screen flex items-center justify-center">
+    <span class="font-bold">Tulimy.com</span>
+  </div>
 </div>
