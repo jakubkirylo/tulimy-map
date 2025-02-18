@@ -1,17 +1,10 @@
-import {
-  AfterViewInit,
-  Component,
-  Inject,
-  PLATFORM_ID,
-  ViewChild,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 import { PanelModule } from 'primeng/panel';
-import { Carousel, CarouselModule } from 'primeng/carousel';
-import { isPlatformBrowser } from '@angular/common';
+import { CarouselModule } from 'primeng/carousel';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +17,7 @@ import { isPlatformBrowser } from '@angular/common';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  host: { ngSkipHydration: 'true' }, // for Ng Prime Carousel
 })
 export class AppComponent {
   title = 'tulimy-map';
