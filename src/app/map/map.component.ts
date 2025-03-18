@@ -1,4 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,6 +10,10 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
+import { PoiService } from '../poi/poi.service';
+import { toLatLng } from '../poi/poi.helpers';
+import { PoiType } from '../poi/poi.interfaces';
+import { BrowserModule } from '@angular/platform-browser';
 
 const TulimyCoordinates: any = [52.2161740267298, 21.2321494716019];
 
@@ -18,12 +22,14 @@ const TulimyCoordinates: any = [52.2161740267298, 21.2321494716019];
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule],
 })
 export class MapComponent implements OnInit {
   private viewContainer = inject(ViewContainerRef);
+  private poiService = inject(PoiService);
 
-  @ViewChild('popupBannerTemplate', { static: false })
-  public popupBannerTemplate?: TemplateRef<any>;
+  @ViewChild('popupDataTemplate', { static: false })
+  public popupDataTemplate?: TemplateRef<any>;
 
   private map: any;
 
@@ -48,27 +54,37 @@ export class MapComponent implements OnInit {
       });
       L.Marker.prototype.options.icon = iconDefault;
 
-      // Create the map in the #map container
-      this.map = L.map('map').setView(TulimyCoordinates, 15);
+      this.map = L.map('map').setView(TulimyCoordinates, 13);
 
       // Add a tile layer
       L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
         attribution:
-          'copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, ' +
-          'Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>',
+          '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, ' +
+          'Tulimy.com',
       }).addTo(this.map);
 
-      if (this.popupBannerTemplate) {
-        const view = this.viewContainer.createEmbeddedView(
-          this.popupBannerTemplate
-        );
-        const popupElement = view.rootNodes[0] as HTMLElement;
+      // Add pois
+      this.poiService.getPois().subscribe((pois) => {
+        pois.forEach((poi) => {
+          const marker = L.marker(toLatLng(poi.coordinates)).addTo(this.map);
+          if (this.popupDataTemplate) {
+            marker.bindPopup(
+              this.viewContainer.createEmbeddedView(this.popupDataTemplate, {
+                poi,
+              }).rootNodes[0]
+            );
+          }
 
-        L.marker(TulimyCoordinates)
-          .addTo(this.map)
-          .bindPopup(popupElement)
-          .openPopup();
-      }
+          // marker.addTo(this.map);
+
+          // If Home then open popup right away. Delay to give time for rendering
+          if (poi.type === PoiType.Home) {
+            setTimeout(() => {
+              marker.openPopup();
+            }, 100);
+          }
+        });
+      });
     }
   }
 }

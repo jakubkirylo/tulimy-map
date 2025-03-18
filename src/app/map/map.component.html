@@ -1,7 +1,35 @@
 <div id="map" class="h-full"></div>
 
-<ng-template #popupBannerTemplate>
-  <div
-    class="popup-content p-1 bg-[url(assets/tulimy.com.png)] bg-cover bg-center h-[250px] w-[285px]"
-  ></div>
-</ng-template>
+<div style="display: none">
+  <ng-template #popupDataTemplate let-poi="poi">
+    <div class="popup-content p-1">
+      <h2 class="text-lg font-bold">{{ poi.name }}</h2>
+      @if(poi.description){
+      <p>{{ poi.description }}</p>
+      } @if(poi.address){
+      <p>{{ poi.address }}</p>
+      } @if(poi.phone){
+      <p>{{ poi.phone }}</p>
+      } @if(poi.www){
+      <p>
+        <a [href]="poi.www" target="_blank">{{ poi.www }}</a>
+      </p>
+      } @if(poi.banner) { @if(poi.www) {
+      <a [href]="poi.www" target="_blank">
+        <ng-container
+          *ngTemplateOutlet="banner; context: { bannerUrl: poi.banner }"
+        ></ng-container>
+      </a>
+      } @else {
+      <ng-container *ngTemplateOutlet="banner"></ng-container>
+      } }
+    </div>
+  </ng-template>
+
+  <ng-template #banner let-bannerUrl="bannerUrl">
+    <div
+      class="popup-content p-1 bg-cover bg-center h-[250px] w-[285px]"
+      [ngStyle]="{ 'background-image': 'url(assets/' + bannerUrl + ')' }"
+    ></div>
+  </ng-template>
+</div>
