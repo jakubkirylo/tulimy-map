@@ -25,8 +25,6 @@ jobs:
         run: npm run build
       - name: List Build Output Directory
         run: ls -la dist/tulimy-map/browser || console.warn "Directory not found"
-      - name: Rename Index File
-        run: mv dist/tulimy-map/browser/index.csr.html dist/tulimy-map/browser/index.html
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
