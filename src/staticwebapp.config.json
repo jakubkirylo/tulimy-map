@@ -9,7 +9,7 @@
   "routes": [
     {
       "route": "/map",
-      "redirect": "/index.html",
+      "redirect": "index.html",
       "statusCode": 200
     }
   ]
