@@ -1,17 +1,16 @@
 import {
+  AfterViewInit,
   Component,
   OnInit,
   TemplateRef,
   ViewChild,
-  ViewContainerRef,
-  Inject,
   inject,
 } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { PoiService } from '../poi/poi.service';
 import { toLatLng } from '../poi/poi.helpers';
 import { PoiType } from '../poi/poi.interfaces';
-import { PLATFORM_ID } from '@angular/core';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-map',
@@ -19,8 +18,7 @@ import { PLATFORM_ID } from '@angular/core';
   styleUrls: ['./map.component.css'],
   imports: [CommonModule],
 })
-export class MapComponent implements OnInit {
-  private viewContainer = inject(ViewContainerRef);
+export class MapComponent implements OnInit, AfterViewInit {
   private poiService = inject(PoiService);
 
   @ViewChild('popupDataTemplate', { static: false })
@@ -28,15 +26,7 @@ export class MapComponent implements OnInit {
 
   private map: any;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
-
-  async ngOnInit() {
-    if (!isPlatformBrowser(this.platformId)) {
-      return;
-    }
-
-    // Dynamically import Leaflet
-    const L = await import('leaflet');
+  ngOnInit(): void {
     const iconDefault = L.icon({
       iconRetinaUrl: 'assets/marker-icon-2x.png',
       iconUrl: 'assets/marker-icon.png',
@@ -49,23 +39,25 @@ export class MapComponent implements OnInit {
     });
     L.Marker.prototype.options.icon = iconDefault;
 
-    // Create the map
     this.map = L.map('map').setView([52.2161740267298, 21.2321494716019], 13);
     L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution:
         '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tulimy.com',
     }).addTo(this.map);
+  }
 
+  ngAfterViewInit(): void {
     this.poiService.getPois().subscribe((pois) => {
       pois.forEach((poi) => {
         const marker = L.marker(toLatLng(poi.coordinates)).addTo(this.map);
+
         if (this.popupDataTemplate) {
           const view = this.popupDataTemplate.createEmbeddedView({ poi });
-          view.detectChanges(); // Ensure all bindings update
+          view.detectChanges();
 
-          // Create a container element and move the rendered nodes into it.
           const container = document.createElement('div');
           view.rootNodes.forEach((node) => container.appendChild(node));
+
           marker.bindPopup(container);
 
           if (poi.type === PoiType.Home) {
