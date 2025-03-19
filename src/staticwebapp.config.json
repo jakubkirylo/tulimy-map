@@ -5,5 +5,12 @@
       "/images/*.{png,jpg,gif}",
       "/css/*"
     ]
-  }
+  },
+  "routes": [
+    {
+      "route": "/map",
+      "redirect": "/index.html",
+      "statusCode": 200
+    }
+  ]
 }
