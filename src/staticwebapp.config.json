@@ -1,16 +1,12 @@
 {
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": [
-      "/images/*.{png,jpg,gif}",
-      "/css/*"
-    ]
+    "exclude": ["/images/*.{png,jpg,gif}", "/css/*"]
   },
   "routes": [
     {
       "route": "/map",
-      "redirect": "/",
-      "statusCode": 200
+      "allowedRoles": ["anonymous"]
     }
   ]
 }
