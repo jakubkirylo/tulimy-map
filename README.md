@@ -1,15 +1,17 @@
 # TulimyMap
 
-Ongoing project for my wife local business. Idea is to create a map of local points/shops/restaurants, run by or for local community in one of the Warsaw's districts (Wesoła).
+Current Project for My Wife’s Local Business
+
+The idea is to create a map of local points of interest—including shops and restaurants—run by or for the local community in one of Warsaw’s districts (Wesoła).
 
 To Do:
-1. RWD
+1. Responsive Web Design (RWD)
 2. SEO optimization
-3. Custom Icon PINs
-4. Admin panel for creating/updating/deleting PINs
+3. Custom icon PINs
+4. Admin panel for creating, updating, and deleting PINs
 
-App is hosted on Azure: https://gray-water-0b72e7d03.6.azurestaticapps.net/map
-CI handled by GitHub Actions.
+The app is hosted on Azure: https://gray-water-0b72e7d03.6.azurestaticapps.net/map
+Continuous integration is handled by GitHub Actions.
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
 
