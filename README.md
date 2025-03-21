@@ -8,6 +8,9 @@ To Do:
 3. Custom Icon PINs
 4. Admin panel for creating/updating/deleting PINs
 
+App is hosted on Azure: https://gray-water-0b72e7d03.6.azurestaticapps.net/map
+CI handled by GitHub Actions.
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
 
 ## Development server
