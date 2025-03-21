@@ -1,5 +1,13 @@
 # TulimyMap
 
+Ongoing project for my wife local business. Idea is to create a map of local points/shops/restaurants, run by or for local community in one of the Warsaw's districts (Wesoła).
+
+To Do:
+1. RWD
+2. SEO optimization
+3. Custom Icon PINs
+4. Admin panel for creating/updating/deleting PINs
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
 
 ## Development server
