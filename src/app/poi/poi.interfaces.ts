@@ -8,6 +8,7 @@ export interface PointOfInterest {
   phone?: string;
   address?: string; // address type?
   type: PoiType;
+  icon?: string;
 }
 
 export enum PoiType {

@@ -32,9 +32,14 @@
   ></div>
 </ng-template>
 
-<div #appWidgets class="hidden">
+<!-- Marker Icon Template -->
+<ng-template
+  #markerIconTemplate
+  let-iconName="iconName"
+  let-fillColor="fillColor"
+>
   <app-marker-icon
-    [fillColor]="'fill-amber-600'"
-    [iconName]="'pi-shop'"
+    [fillColor]="fillColor"
+    [iconName]="iconName"
   ></app-marker-icon>
-</div>
+</ng-template>

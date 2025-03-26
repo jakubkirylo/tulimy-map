@@ -8,11 +8,20 @@ import {
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import * as L from 'leaflet';
 import { PoiService } from '../poi/poi.service';
 import { toLatLng } from '../poi/poi.helpers';
 import { PoiType } from '../poi/poi.interfaces';
-import * as L from 'leaflet';
 import { MarkerIconComponent } from './marker-icon/marker-icon.component';
+
+// Example mapper (if not already in your PoiService)
+export const PoiTypeIconMap: Record<PoiType, string> = {
+  [PoiType.Home]: 'pi-home',
+  [PoiType.KidsShop]: 'pi-shop',
+  [PoiType.Restaurant]: 'pi-moon',
+  [PoiType.Cloths]: 'pi-clothes',
+  [PoiType.Services]: 'pi-eraser',
+};
 
 @Component({
   selector: 'app-map',
@@ -26,8 +35,8 @@ export class MapComponent implements OnInit, AfterViewInit {
   @ViewChild('popupDataTemplate', { static: false })
   popupDataTemplate!: TemplateRef<any>;
 
-  @ViewChild('appWidgets', { read: ElementRef })
-  private _appWidgetsRef?: ElementRef;
+  @ViewChild('markerIconTemplate', { static: false })
+  markerIconTemplate!: TemplateRef<any>;
 
   private map: any;
 
@@ -40,28 +49,44 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const iconHtml = this._appWidgetsRef?.nativeElement.innerHTML || '';
-    const divIcon = L.divIcon({
-      html: iconHtml,
-      iconSize: [40, 53],
-      iconAnchor: [20, 40],
-      popupAnchor: [0, -35],
-      className: 'border-0',
-    });
-    L.Marker.prototype.options.icon = divIcon;
-
+    // For each POI, create a custom marker icon based on its type.
     this.poiService.getPois().subscribe((pois) => {
       pois.forEach((poi) => {
-        const marker = L.marker(toLatLng(poi.coordinates)).addTo(this.map);
+        const iconName = poi.icon || PoiTypeIconMap[poi.type] || 'pi-default';
+        // TODO: fill color based on POI Type as well?
+        const fillColor = 'fill-amber-600';
+
+        const view = this.markerIconTemplate.createEmbeddedView({
+          iconName,
+          fillColor,
+        });
+        view.detectChanges();
+
+        const container = document.createElement('div');
+        view.rootNodes.forEach((node) => container.appendChild(node));
+
+        const divIcon = L.divIcon({
+          html: container.innerHTML,
+          iconSize: [40, 53],
+          iconAnchor: [20, 40],
+          popupAnchor: [0, -35],
+          className: 'border-0',
+        });
+
+        const marker = L.marker(toLatLng(poi.coordinates), {
+          icon: divIcon,
+        }).addTo(this.map);
 
         if (this.popupDataTemplate) {
-          const view = this.popupDataTemplate.createEmbeddedView({ poi });
-          view.detectChanges();
+          const viewPopup = this.popupDataTemplate.createEmbeddedView({ poi });
+          viewPopup.detectChanges();
 
-          const container = document.createElement('div');
-          view.rootNodes.forEach((node) => container.appendChild(node));
+          const popupContainer = document.createElement('div');
+          viewPopup.rootNodes.forEach((node) =>
+            popupContainer.appendChild(node)
+          );
 
-          marker.bindPopup(container);
+          marker.bindPopup(popupContainer);
 
           if (poi.type === PoiType.Home) {
             marker.openPopup();

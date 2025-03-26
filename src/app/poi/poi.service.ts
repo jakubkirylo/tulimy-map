@@ -2,6 +2,14 @@ import { Injectable } from '@angular/core';
 import { PointOfInterest, PoiType } from './poi.interfaces';
 import { Observable, of } from 'rxjs';
 
+export const PoiTypeIconMap: Record<PoiType, string> = {
+  [PoiType.Home]: 'pi-home',
+  [PoiType.KidsShop]: 'pi-shop',
+  [PoiType.Restaurant]: 'pi-moon',
+  [PoiType.Cloths]: 'pi-clothes',
+  [PoiType.Services]: 'pi-eraser',
+};
+
 const pois: PointOfInterest[] = [
   {
     id: 1,
@@ -61,6 +69,10 @@ const pois: PointOfInterest[] = [
 })
 export class PoiService {
   public getPois(): Observable<PointOfInterest[]> {
-    return of(pois);
+    const decoratedPois = pois.map((poi) => ({
+      ...poi,
+      icon: PoiTypeIconMap[poi.type] || 'pi-default',
+    }));
+    return of(decoratedPois);
   }
 }
