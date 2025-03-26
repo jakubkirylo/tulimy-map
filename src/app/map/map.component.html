@@ -31,3 +31,15 @@
     [ngStyle]="{ 'background-image': 'url(assets/' + bannerUrl + ')' }"
   ></div>
 </ng-template>
+
+<!-- Marker Icon Template -->
+<ng-template
+  #markerIconTemplate
+  let-iconName="iconName"
+  let-fillColor="fillColor"
+>
+  <app-marker-icon
+    [fillColor]="fillColor"
+    [iconName]="iconName"
+  ></app-marker-icon>
+</ng-template>

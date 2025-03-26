@@ -8,6 +8,7 @@ export interface PointOfInterest {
   phone?: string;
   address?: string; // address type?
   type: PoiType;
+  icon?: string;
 }
 
 export enum PoiType {
@@ -16,6 +17,9 @@ export enum PoiType {
   Restaurant = 'Restaurant', // split to types? burgers, kebab, coffe, sushi, pizza
   Cloths = 'Cloths',
   Services = 'Usługi',
+  Tailor = 'Krawiec',
+  Jewelry = 'Biżuteria',
+  Kebab = 'Kebab',
 }
 
 // Can't use L.LatLng due to lazy loading of leaflet
