@@ -12,12 +12,13 @@ import { PoiService } from '../poi/poi.service';
 import { toLatLng } from '../poi/poi.helpers';
 import { PoiType } from '../poi/poi.interfaces';
 import * as L from 'leaflet';
+import { MarkerIconComponent } from './marker-icon/marker-icon.component';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
-  imports: [CommonModule],
+  imports: [CommonModule, MarkerIconComponent],
 })
 export class MapComponent implements OnInit, AfterViewInit {
   private poiService = inject(PoiService);
