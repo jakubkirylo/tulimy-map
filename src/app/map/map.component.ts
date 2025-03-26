@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  ElementRef,
   OnInit,
   TemplateRef,
   ViewChild,
@@ -24,21 +25,12 @@ export class MapComponent implements OnInit, AfterViewInit {
   @ViewChild('popupDataTemplate', { static: false })
   popupDataTemplate!: TemplateRef<any>;
 
+  @ViewChild('appWidgets', { read: ElementRef })
+  private _appWidgetsRef?: ElementRef;
+
   private map: any;
 
   ngOnInit(): void {
-    const iconDefault = L.icon({
-      iconRetinaUrl: 'assets/marker-icon-2x.png',
-      iconUrl: 'assets/marker-icon.png',
-      shadowUrl: 'assets/marker-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      tooltipAnchor: [16, -28],
-      shadowSize: [41, 41],
-    });
-    L.Marker.prototype.options.icon = iconDefault;
-
     this.map = L.map('map').setView([52.2161740267298, 21.2321494716019], 13);
     L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution:
@@ -47,6 +39,16 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    const iconHtml = this._appWidgetsRef?.nativeElement.innerHTML || '';
+    const divIcon = L.divIcon({
+      html: iconHtml,
+      iconSize: [40, 53],
+      iconAnchor: [20, 40],
+      popupAnchor: [0, -35],
+      className: 'border-0',
+    });
+    L.Marker.prototype.options.icon = divIcon;
+
     this.poiService.getPois().subscribe((pois) => {
       pois.forEach((poi) => {
         const marker = L.marker(toLatLng(poi.coordinates)).addTo(this.map);
