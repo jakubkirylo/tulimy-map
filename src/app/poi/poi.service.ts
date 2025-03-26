@@ -1,14 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PointOfInterest, PoiType } from './poi.interfaces';
 import { Observable, of } from 'rxjs';
-
-export const PoiTypeIconMap: Record<PoiType, string> = {
-  [PoiType.Home]: 'pi-home',
-  [PoiType.KidsShop]: 'pi-shop',
-  [PoiType.Restaurant]: 'pi-moon',
-  [PoiType.Cloths]: 'pi-clothes',
-  [PoiType.Services]: 'pi-eraser',
-};
+import { PoiTypeIconMap } from './poi-icon.mapper';
 
 const pois: PointOfInterest[] = [
   {
@@ -43,7 +36,7 @@ const pois: PointOfInterest[] = [
     id: 4,
     name: 'Poprawki krawieckie - Ludmiła Rutkowska',
     coordinates: [52.241286972230505, 21.191266853653485],
-    type: PoiType.Services,
+    type: PoiType.Tailor,
     address: 'Brata Alberta 37, 05-075 Warszawa-Wesoła',
   },
   {
@@ -51,7 +44,7 @@ const pois: PointOfInterest[] = [
     name: 'Mosca - biżuteria handmade',
     description: 'Mosca - biżuteria handmade',
     coordinates: [52.24194551286675, 21.183380409580675],
-    type: PoiType.Services,
+    type: PoiType.Jewelry,
     www: 'https://www.mosca.com.pl',
     phone: '504-693-610',
     address: 'Zachodnia 9, 05-075 Warszawa-Wesoła',
@@ -60,7 +53,7 @@ const pois: PointOfInterest[] = [
     id: 6,
     name: 'KLASS Gemüse kebab',
     coordinates: [52.21752098540856, 21.138885296168947],
-    type: PoiType.Restaurant,
+    type: PoiType.Kebab,
   },
 ];
 

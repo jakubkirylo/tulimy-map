@@ -14,15 +14,6 @@ import { toLatLng } from '../poi/poi.helpers';
 import { PoiType } from '../poi/poi.interfaces';
 import { MarkerIconComponent } from './marker-icon/marker-icon.component';
 
-// Example mapper (if not already in your PoiService)
-export const PoiTypeIconMap: Record<PoiType, string> = {
-  [PoiType.Home]: 'pi-home',
-  [PoiType.KidsShop]: 'pi-shop',
-  [PoiType.Restaurant]: 'pi-moon',
-  [PoiType.Cloths]: 'pi-clothes',
-  [PoiType.Services]: 'pi-eraser',
-};
-
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -52,7 +43,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     // For each POI, create a custom marker icon based on its type.
     this.poiService.getPois().subscribe((pois) => {
       pois.forEach((poi) => {
-        const iconName = poi.icon || PoiTypeIconMap[poi.type] || 'pi-default';
+        const iconName = poi.icon || 'home';
         // TODO: fill color based on POI Type as well?
         const fillColor = 'fill-amber-600';
 
