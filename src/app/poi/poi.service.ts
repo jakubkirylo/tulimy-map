@@ -64,7 +64,7 @@ export class PoiService {
   public getPois(): Observable<PointOfInterest[]> {
     const decoratedPois = pois.map((poi) => ({
       ...poi,
-      icon: PoiTypeIconMap[poi.type] || 'pi-default',
+      icon: PoiTypeIconMap[poi.type],
     }));
     return of(decoratedPois);
   }
