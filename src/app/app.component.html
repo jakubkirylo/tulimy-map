@@ -17,11 +17,11 @@
       </ng-template>
     </p-menubar>
   </div>
-  <div class="grid grid-cols-[auto_325px] gap-2 mt-2 flex-1">
-    <div>
+  <div class="grid xl:grid-cols-[auto_325px] gap-2 flex-1">
+    <div class="m-2">
       <router-outlet />
     </div>
-    <div>
+    <div class="hidden xl:flex mt-2">
       <p-carousel
         [value]="images"
         [numVisible]="1"
@@ -37,6 +37,6 @@
     </div>
   </div>
   <div
-    class="mt-2 h-[150px] w-screen flex items-center justify-center bg-[url(assets/footer.png)] bg-cover bg-center"
+    class="hidden xl:flex mt-2 h-[150px] w-screen items-center justify-center bg-[url(assets/footer.png)] bg-cover bg-center"
   ></div>
 </div>
