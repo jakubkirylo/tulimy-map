@@ -1,0 +1,45 @@
+<div class="popup-content p-1">
+  @let p = poi();
+  <h2 class="text-lg font-bold">{{ p?.name }}</h2>
+  @if(p?.description){
+  <p>{{ p?.description }}</p>
+  } @if(p?.address){
+  <p>{{ p?.address }}</p>
+  } @if(p?.phone){
+  <p>{{ p?.phone }}</p>
+  } @if(p?.www){
+  <p>
+    <a [href]="p?.www" target="_blank">{{ p?.www }}</a>
+  </p>
+  } @if(images().length > 0) { @if(p?.www) {
+  <a [href]="p?.www" target="_blank">
+    <ng-container *ngTemplateOutlet="banner"></ng-container>
+  </a>
+  } @else {
+  <ng-container *ngTemplateOutlet="banner"></ng-container>
+  } }
+</div>
+
+<ng-template #banner>
+  <div>
+    <p-carousel
+      [value]="images()"
+      [numVisible]="1"
+      [numScroll]="1"
+      [circular]="true"
+      [autoplayInterval]="5000"
+      [showNavigators]="false"
+      [showIndicators]="false"
+    >
+      <ng-template let-image #item>
+        <div class="flex justify-center">
+          <img
+            [src]="image.src"
+            [alt]="image.alt"
+            class="h-[180px] xl:h-[250px]"
+          />
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+</ng-template>

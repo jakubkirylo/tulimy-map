@@ -1,7 +1,6 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef,
   OnInit,
   TemplateRef,
   ViewChild,
@@ -13,12 +12,13 @@ import { PoiService } from '../poi/poi.service';
 import { toLatLng } from '../poi/poi.helpers';
 import { PoiType } from '../poi/poi.interfaces';
 import { MarkerIconComponent } from './marker-icon/marker-icon.component';
+import { PopupTemplateComponent } from './popup-template/popup-template.component';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
-  imports: [CommonModule, MarkerIconComponent],
+  imports: [CommonModule, MarkerIconComponent, PopupTemplateComponent],
 })
 export class MapComponent implements OnInit, AfterViewInit {
   private poiService = inject(PoiService);

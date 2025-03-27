@@ -3,7 +3,7 @@ export interface PointOfInterest {
   name: string;
   coordinates: number[]; // want to keep it as number[] as it's easier to copy coordinates from google maps
   description?: string;
-  banner?: string; //url?
+  banners?: string[];
   www?: string;
   phone?: string;
   address?: string; // address type?
