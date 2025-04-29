@@ -8,12 +8,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { catchError, EMPTY } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
+import { AuthService } from '../../infrastructure/auth.service';
 
 @Component({
   selector: 'app-login',

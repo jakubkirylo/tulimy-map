@@ -10,7 +10,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
-import { AuthInterceptor } from './auth/auth.interceptor';
+import { AuthInterceptor } from './features/admin/infrastructure/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
