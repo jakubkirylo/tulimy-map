@@ -46,8 +46,9 @@ export class LoginComponent {
   onLogin(): void {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
+
       this.authService
-        .login(username, password)
+        .authorizeUser(username, password)
         .pipe(
           catchError((err) => {
             console.warn('Login failed:', err);

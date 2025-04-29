@@ -15,6 +15,10 @@
           Tulimy.com
         </a>
       </ng-template>
+      @if(isAuthenticated()){
+
+      <div (click)="logout()">Logout</div>
+      }
     </p-menubar>
   </div>
   <div class="grid xl:grid-cols-[auto_325px] gap-2 flex-1">

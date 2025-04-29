@@ -1,21 +1,15 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { AuthMeResponse } from '../domain/auth.interfaces';
-import { catchError, map, of } from 'rxjs';
+import { AuthService } from './auth.service';
 
-export const authGuard: CanActivateFn = () => {
-  const httpClient = inject(HttpClient);
+export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
+  const authService = inject(AuthService);
 
-  return httpClient.get<AuthMeResponse>('/.auth/me').pipe(
-    map((userInfo: AuthMeResponse) => {
-      const roles = userInfo?.clientPrincipal?.userRoles || [];
-      return roles.includes('authenticated') ? true : false;
-    }),
-    catchError(() => {
-      router.navigate(['/login']);
-      return of(false);
-    })
-  );
+  if (authService.isAuthenticated()) {
+    return true;
+  } else {
+    router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+    return false;
+  }
 };
