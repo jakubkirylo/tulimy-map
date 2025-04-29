@@ -1,33 +1,48 @@
 <div class="flex justify-center items-center h-screen bg-gray-100">
-  <p-card header="Login" styleClass="w-96">
+  <p-card styleClass="w-96">
+    <ng-template #title>
+      <img
+        src="/assets/logo.jpg"
+        alt="image"
+        class="inline-block w-[50px] h-[50px] mr-2"
+      />
+      Mapa Tulimy.com
+    </ng-template>
+
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <div class="field mb-4">
-        <label for="username">Username</label>
-        <input
-          id="username"
-          pInputText
-          formControlName="username"
-          placeholder="Enter your username"
-        />
+        <p-floatlabel variant="on">
+          <input
+            class="w-full"
+            type="text"
+            pInputText
+            id="login"
+            formControlName="username"
+          />
+          <label for="login">Nazwa użytkownika</label>
+        </p-floatlabel>
       </div>
 
       <div class="field mb-4">
-        <label for="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          pInputText
-          formControlName="password"
-          placeholder="Enter your password"
-        />
+        <p-floatlabel variant="on">
+          <input
+            class="w-full"
+            type="text"
+            pInputText
+            id="password"
+            formControlName="password"
+          />
+          <label for="password">Hasło</label>
+        </p-floatlabel>
       </div>
-
-      <button
-        pButton
-        type="submit"
-        label="Login"
-        [disabled]="loginForm.invalid"
-      ></button>
+      <div class="flex justify-center">
+        <button
+          pButton
+          type="submit"
+          label="Zaloguj"
+          [disabled]="loginForm.invalid"
+        ></button>
+      </div>
     </form>
   </p-card>
 </div>

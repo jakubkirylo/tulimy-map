@@ -10,10 +10,20 @@ import {
 import { catchError, EMPTY } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { CardModule } from 'primeng/card';
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule, CardModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    CardModule,
+    InputTextModule,
+    FloatLabelModule,
+    ButtonModule,
+  ],
   templateUrl: './login.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

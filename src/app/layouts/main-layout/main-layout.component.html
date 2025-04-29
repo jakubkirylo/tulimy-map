@@ -1,0 +1,42 @@
+<div class="h-screen flex flex-col">
+  <div class="h-[75px]">
+    <p-menubar [model]="items">
+      <ng-template #start>
+        <a
+          href="https://tulimy.com/"
+          target="_blank"
+          class="flex items-center justify-center"
+        >
+          <img
+            src="/assets/logo.jpg"
+            alt="image"
+            class="inline-block w-[50px] h-[50px] mr-2"
+          />
+          Tulimy.com
+        </a>
+      </ng-template>
+    </p-menubar>
+  </div>
+  <div class="grid xl:grid-cols-[auto_325px] gap-2 flex-1">
+    <div class="m-2">
+      <router-outlet />
+    </div>
+    <div class="hidden xl:flex mt-2">
+      <p-carousel
+        [value]="images"
+        [numVisible]="1"
+        [numScroll]="1"
+        [circular]="true"
+        [autoplayInterval]="5000"
+        [showNavigators]="true"
+      >
+        <ng-template let-image #item>
+          <img [src]="image.src" [alt]="image.alt" />
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+  <div
+    class="hidden xl:flex mt-2 h-[150px] w-screen items-center justify-center bg-[url(assets/footer.png)] bg-cover bg-center"
+  ></div>
+</div>
