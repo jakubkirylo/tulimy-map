@@ -1,0 +1,33 @@
+<div class="flex justify-center items-center h-screen bg-gray-100">
+  <p-card header="Login" styleClass="w-96">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="field mb-4">
+        <label for="username">Username</label>
+        <input
+          id="username"
+          pInputText
+          formControlName="username"
+          placeholder="Enter your username"
+        />
+      </div>
+
+      <div class="field mb-4">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          pInputText
+          formControlName="password"
+          placeholder="Enter your password"
+        />
+      </div>
+
+      <button
+        pButton
+        type="submit"
+        label="Login"
+        [disabled]="loginForm.invalid"
+      ></button>
+    </form>
+  </p-card>
+</div>
