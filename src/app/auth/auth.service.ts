@@ -12,8 +12,12 @@ export class AuthService {
   private tokenKey = 'auth_token';
 
   login(username: string, password: string): Observable<any> {
+    // TODO JWK: for swa cli to dummy login
+    // TODO JWK: write custom auth azure function
+    // window.location.href = '/.auth/login/aad';
+
     return this.http
-      .post<{ token: string }>('/api/auth/login', { username, password })
+      .post<{ token: string }>('/.auth/login/aad', { username, password })
       .pipe(
         tap((response) => {
           localStorage.setItem(this.tokenKey, response.token);
