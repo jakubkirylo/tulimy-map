@@ -25,6 +25,10 @@ To start a local development server, run:
 ```bash
 swa start http://localhost:4200 --run "npm start" --api-location ./api
 ```
+You might need to run Azure Functions separately as CLI struggles with C# Azure Functions (SWA CLI works better with Node.js)
+
+Then access page by proxy CLI port:
+http://localhost:4280/map
 
 
 ## Code scaffolding
