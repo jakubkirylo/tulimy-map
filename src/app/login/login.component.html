@@ -25,13 +25,15 @@
 
       <div class="field mb-4">
         <p-floatlabel variant="on">
-          <input
-            class="w-full"
-            type="text"
-            pInputText
-            id="password"
+          <p-password
+            [inputStyle]="{ width: '100%' }"
+            [style]="{ width: '100%' }"
             formControlName="password"
+            [feedback]="false"
+            [toggleMask]="true"
+            id="password"
           />
+
           <label for="password">Hasło</label>
         </p-floatlabel>
       </div>
