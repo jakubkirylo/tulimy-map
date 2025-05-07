@@ -6,6 +6,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { AdminPageComponent } from './features/admin/pages/admin-page/admin-page.component';
 import { authGuard } from './features/admin/infrastructure/auth.guard';
+import { GoogleMapComponent } from './features/admin/pages/google-map/google-map.component';
 
 export const routes: Routes = [
   {
@@ -22,7 +23,16 @@ export const routes: Routes = [
     component: AuthLayoutComponent,
     children: [
       { path: 'login', component: LoginComponent },
-      { path: 'admin', component: AdminPageComponent, canActivate: [authGuard] },
+      {
+        path: 'admin',
+        component: AdminPageComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'googleMap',
+        component: GoogleMapComponent,
+        canActivate: [authGuard],
+      },
     ],
   },
   { path: '**', redirectTo: '/map' },

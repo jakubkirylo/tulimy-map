@@ -57,6 +57,11 @@ export class MainLayoutComponent implements OnInit {
         routerLink: '/admin',
         visible: this.authService.isAuthenticated(),
       },
+      {
+        label: 'Google Map',
+        routerLink: '/googleMap',
+        visible: this.authService.isAuthenticated(),
+      },
     ];
   }
 }
