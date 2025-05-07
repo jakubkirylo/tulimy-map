@@ -16,8 +16,10 @@
         </a>
       </ng-template>
       @if(isAuthenticated()){
-
       <div (click)="logout()">Logout</div>
+      } @else {
+      <div (click)="login()">Login</div>
+
       }
     </p-menubar>
   </div>
