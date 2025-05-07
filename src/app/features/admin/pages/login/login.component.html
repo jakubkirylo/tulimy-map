@@ -1,0 +1,50 @@
+<div class="flex justify-center items-center h-screen bg-gray-100">
+  <p-card styleClass="w-96">
+    <ng-template #title>
+      <img
+        src="/assets/logo.jpg"
+        alt="image"
+        class="inline-block w-[50px] h-[50px] mr-2"
+      />
+      Mapa Tulimy.com
+    </ng-template>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="field mb-4">
+        <p-floatlabel variant="on">
+          <input
+            class="w-full"
+            type="text"
+            pInputText
+            id="login"
+            formControlName="username"
+          />
+          <label for="login">Nazwa użytkownika</label>
+        </p-floatlabel>
+      </div>
+
+      <div class="field mb-4">
+        <p-floatlabel variant="on">
+          <p-password
+            [inputStyle]="{ width: '100%' }"
+            [style]="{ width: '100%' }"
+            formControlName="password"
+            [feedback]="false"
+            [toggleMask]="true"
+            id="password"
+          />
+
+          <label for="password">Hasło</label>
+        </p-floatlabel>
+      </div>
+      <div class="flex justify-center">
+        <button
+          pButton
+          type="submit"
+          label="Zaloguj"
+          [disabled]="loginForm.invalid"
+        ></button>
+      </div>
+    </form>
+  </p-card>
+</div>
