@@ -1,5 +1,5 @@
-import { Component, inject, OnInit, computed, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
@@ -22,6 +22,8 @@ import { AuthService } from '../../features/admin/infrastructure/auth.service';
 })
 export class MainLayoutComponent implements OnInit {
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+
   title = 'tulimy-map';
 
   protected items: MenuItem[] = [];
@@ -41,6 +43,10 @@ export class MainLayoutComponent implements OnInit {
   protected logout(): void {
     this.authService.logout();
     this.refreshMenuItems();
+  }
+
+  protected login(): void {
+    this.router.navigate(['/login']);
   }
 
   private refreshMenuItems(): void {
