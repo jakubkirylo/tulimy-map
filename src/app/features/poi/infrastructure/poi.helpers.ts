@@ -1,4 +1,4 @@
-import { LatLng } from './poi.interfaces';
+import { LatLng } from '../domain/poi.interfaces';
 
 // TODO: handle alternative
 export function toLatLng(coordinates: number[]): LatLng {

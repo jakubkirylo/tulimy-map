@@ -1,4 +1,4 @@
-import { PoiType } from './poi.interfaces';
+import { PoiType } from '../domain/poi.interfaces';
 
 export const PoiTypeIconMap: Record<PoiType, string> = {
   [PoiType.Home]: 'featured_seasonal_and_gifts',

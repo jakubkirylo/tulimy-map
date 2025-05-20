@@ -8,11 +8,12 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as L from 'leaflet';
-import { PoiService } from '../poi/poi.service';
-import { toLatLng } from '../poi/poi.helpers';
-import { PoiType } from '../poi/poi.interfaces';
+
 import { MarkerIconComponent } from './marker-icon/marker-icon.component';
 import { PopupTemplateComponent } from './popup-template/popup-template.component';
+import { PoiService } from '../../poi/infrastructure/poi.service';
+import { toLatLng } from '../../poi/infrastructure/poi.helpers';
+import { PoiType } from '../../poi/domain/poi.interfaces';
 
 @Component({
   selector: 'app-map',
