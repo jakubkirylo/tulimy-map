@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PointOfInterest, PoiType } from './poi.interfaces';
+import { PointOfInterest, PoiType } from '../domain/poi.interfaces';
 import { Observable, of } from 'rxjs';
 import { PoiTypeIconMap } from './poi-icon.mapper';
 

@@ -1,0 +1,19 @@
+<div class="h-screen flex flex-col">
+  <div class="h-[75px]">
+    <p-menubar [model]="items">
+      <ng-template #start>
+        <a href="https://tulimy.com/" target="_blank" class="flex items-center justify-center">
+          <img src="/assets/logo.jpg" alt="image" class="inline-block w-[50px] h-[50px] mr-2" />
+          Tulimy.com
+        </a>
+      </ng-template>
+      @if(isAuthenticated()){
+      <div (click)="logout()">Logout</div>
+      } @else {
+      <div (click)="login()">Login</div>
+
+      }
+    </p-menubar>
+  </div>
+  <router-outlet />
+</div>

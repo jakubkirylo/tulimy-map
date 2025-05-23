@@ -4,9 +4,9 @@ import {
   computed,
   input,
 } from '@angular/core';
-import { PointOfInterest } from '../../poi/poi.interfaces';
 import { CommonModule } from '@angular/common';
 import { CarouselModule } from 'primeng/carousel';
+import { PointOfInterest } from '../../../poi/domain/poi.interfaces';
 
 @Component({
   selector: 'app-popup-template',
