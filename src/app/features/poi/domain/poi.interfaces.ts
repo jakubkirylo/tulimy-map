@@ -1,5 +1,5 @@
 export interface PointOfInterest {
-  id: number;
+  id: string;
   name: string;
   coordinates: number[]; // want to keep it as number[] as it's easier to copy coordinates from google maps
   description?: string;
