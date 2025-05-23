@@ -27,18 +27,41 @@
       />
       <label for="coordinates">Coordinates</label>
     </p-floatlabel>
-    <p-floatlabel variant="on">
+    <!-- <p-floatlabel variant="on">
       <p-dropdown
         [options]="poiTypes"
         [(ngModel)]="newPoi.type"
         name="type"
         id="type"
         [showClear]="true"
-        placeholder="Select Type"
+        optionLabel="label"
+        optionValue="value"
         required
       ></p-dropdown>
       <label for="type">Type</label>
+    </p-floatlabel> -->
+    <p-floatlabel variant="on">
+      <p-dropdown
+        [options]="pois2"
+        [(ngModel)]="poiForm"
+        inputId="float-label"
+        [showClear]="true"
+        required
+        [ngModelOptions]="{ standalone: true }"
+      ></p-dropdown>
+      <label for="float-label">Type</label>
     </p-floatlabel>
+    <div class="card flex justify-content-center">
+      <p-floatLabel>
+        <p-dropdown
+          [options]="cities"
+          [(ngModel)]="selectedCity"
+          optionLabel="name"
+          inputId="float-label"
+        />
+        <label for="float-label">Select a City</label>
+      </p-floatLabel>
+    </div>
     <p-floatlabel variant="on">
       <input
         pInputText

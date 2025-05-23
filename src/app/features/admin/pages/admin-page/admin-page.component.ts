@@ -13,6 +13,16 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { ButtonModule } from 'primeng/button';
 
+interface PoiTypeOption {
+  label: string;
+  value: string;
+}
+
+interface City {
+  name: string;
+  code: string;
+}
+
 @Component({
   selector: 'app-admin-page',
   standalone: true,
@@ -32,18 +42,43 @@ export class AdminPageComponent {
   private readonly poiApi = inject(PoiApiService);
   public readonly pois = signal<PointOfInterest[]>([]);
   public readonly editingPoi = signal<PointOfInterest | null>(null);
+
+  cities: City[] | undefined;
+  selectedCity: City | undefined = { name: 'Rome', code: 'RM' };
+
+  public poiForm: PoiTypeOption = { label: 'Home', value: 'Home' };
+
   public newPoi: PointOfInterest = {
     id: '',
     name: '',
     coordinates: [],
     type: PoiType.Home,
   };
-  public readonly poiTypes = Object.values(PoiType).map((t) => ({
-    label: t,
-    value: t,
-  }));
+
+  pois2: PoiTypeOption[] = [];
+
+  public readonly poiTypes: PoiTypeOption[] = Object.values(PoiType).map(
+    (t) => ({
+      label: t.toString(),
+      value: t.toString(),
+    })
+  );
 
   ngOnInit() {
+    this.pois2 = [
+      { label: 'Home', value: 'Home' },
+      { label: 'Kebab', value: 'Kebab' },
+    ];
+    this.cities = [
+      { name: 'New York', code: 'NY' },
+      { name: 'Rome', code: 'RM' },
+      { name: 'London', code: 'LDN' },
+      { name: 'Istanbul', code: 'IST' },
+      { name: 'Paris', code: 'PRS' },
+    ];
+    console.warn('poitTypes', this.poiTypes);
+    console.warn('pois2', this.pois2);
+    console.warn('poinForm', this.poiForm);
     this.loadPois();
   }
 
