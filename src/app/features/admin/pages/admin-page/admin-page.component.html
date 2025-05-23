@@ -57,9 +57,10 @@
           [options]="cities"
           [(ngModel)]="selectedCity"
           optionLabel="name"
-          inputId="float-label"
+          inputId="float-label-city"
+          [ngModelOptions]="{ standalone: true }"
         />
-        <label for="float-label">Select a City</label>
+        <label for="float-label-city">Select a City</label>
       </p-floatLabel>
     </div>
     <p-floatlabel variant="on">
